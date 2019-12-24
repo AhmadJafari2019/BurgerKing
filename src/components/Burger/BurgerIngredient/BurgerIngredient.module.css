@@ -111,3 +111,10 @@
     background: linear-gradient(#bf3813, #c45e38);
     margin: 2% auto;
 }
+
+.Chips {
+    width: 30%;
+    height: 3%;
+    background: linear-gradient(#bfbc13, #b6c438);
+    margin: 2% auto;
+}

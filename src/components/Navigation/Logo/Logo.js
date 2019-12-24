@@ -8,3 +8,4 @@ const logo = props => (
 );
 
 export default logo;
+
