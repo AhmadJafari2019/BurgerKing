@@ -15,6 +15,7 @@ const INGREDIENT_PRICES = {
   chips: 2
 };
 class BurgerBuilder extends Component {
+  _isMounted = false;
   state = {
     ingredients: null,
     totalPrice: 4,
@@ -25,7 +26,8 @@ class BurgerBuilder extends Component {
   };
 
   componentDidMount() {
-    console.log(this.props);
+    this._isMounted = true;
+    // console.log(this.props);
     axios
       .get('https://react-my-burger-b7d2c.firebaseio.com/ingredients.json')
       .then(Response => {
@@ -90,7 +92,7 @@ class BurgerBuilder extends Component {
 
   purchaseContinueHandler = () => {
     // // alert('You Continue!');
-    
+
     //   });
     const queryParams = [];
     for (let i in this.state.ingredients) {

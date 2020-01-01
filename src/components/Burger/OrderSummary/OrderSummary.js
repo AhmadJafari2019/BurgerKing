@@ -4,7 +4,7 @@ import Button from '../../UI/Button/Button';
 
 class OrderSummary extends Component {
   UNSAFE_componentWillUpdate() {
-    console.log('[OrderSummary.js] Component Will update');
+    // console.log('[OrderSummary.js] Component Will update');
   }
   render() {
     const ingredientSummary = Object.keys(this.props.ingredients).map(igKey => {

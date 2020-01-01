@@ -4,10 +4,10 @@ import { Route } from 'react-router-dom';
 import ContactData from './ContactData/ContactData';
 
 class Checkout extends Component {
-  // state = {
-  //   ingredients: null,
-  //   price: 0
-  // };
+  state = {
+    ingredients: null,
+    price: 0
+  };
 
   UNSAFE_componentWillMount() {
     const query = new URLSearchParams(this.props.location.search);
@@ -43,7 +43,7 @@ class Checkout extends Component {
           checkoutCanceled={this.checkoutCancelHandler}
         />
         <Route
-          path={this.props.match.url + '/contact-data'}
+          path={this.props.match.path + '/contact-data'}
           //   component={ContactData}
           render={props => (
             <ContactData
