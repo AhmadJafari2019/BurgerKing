@@ -12,53 +12,52 @@ class ContactData extends Component {
         elementType: 'input',
         elementConfig: {
           type: 'text',
-          placeholder: 'Your Name',
+          placeholder: 'Your Name'
         },
-        value: '',
+        value: ''
       },
       street: {
         elementType: 'input',
         elementConfig: {
           type: 'text',
-          placeholder: 'Street',
+          placeholder: 'Street'
         },
-        value: '',
+        value: ''
       },
       zipCode: {
         elementType: 'input',
         elementConfig: {
           type: 'text',
-          placeholder: 'Zip Code',
+          placeholder: 'Zip Code'
         },
-        value: '',
+        value: ''
       },
       country: {
         elementType: 'input',
         elementConfig: {
           type: 'text',
-          placeholder: 'Country',
+          placeholder: 'Country'
         },
-        value: '',
+        value: ''
       },
       email: {
         elementType: 'input',
         elementConfig: {
           type: 'email',
-          placeholder: 'Your E-mail',
+          placeholder: 'Your E-mail'
         },
-        value: '',
+        value: ''
       },
       deliveryMethod: {
         elementType: 'select',
         elementConfig: {
-          options:[
-            {value: 'fastest', displayValue: 'Fastest'},
-            {value: 'cheapest', displayValue: 'Cheapest'}
-        ]
-        
+          options: [
+            { value: 'fastest', displayValue: 'Fastest' },
+            { value: 'cheapest', displayValue: 'Cheapest' }
+          ]
         },
-        value: '',
-      },
+        value: ''
+      }
     },
     loading: false
   };
@@ -83,28 +82,36 @@ class ContactData extends Component {
       });
   };
 
+  inputChangedHandler = (event, inputIdentifier) => {
+    const updatedOrderForm = {
+      ...this.state.orderForm
+    };
+    const updatedFormElement = { ...updatedOrderForm[inputIdentifier] };
+    updatedFormElement.value = event.target.value;
+    updatedOrderForm[inputIdentifier] = updatedFormElement;
+    this.setState({ orderForm: updatedOrderForm });
+  };
+
   render() {
+    const formElementsArray = [];
+    for (let key in this.state.orderForm) {
+      formElementsArray.push({
+        id: key,
+        config: this.state.orderForm[key]
+      });
+    }
     let form = (
       <form>
-        <Input elementType = '...' elementConfig ='...' value='...'/>
-        <Input
-          inputtype="input"
-          type="email"
-          name="email"
-          placeholder=" Your email"
-        />
-        <Input
-          inputtype="input"
-          type="text"
-          name="street"
-          placeholder=" Street"
-        />
-        <Input
-          inputtype="input"
-          type="text"
-          name="postalCode"
-          placeholder=" Postal Code"
-        />
+        {/* <Input elementType="..." elementConfig="..." value="..." /> */}
+        {formElementsArray.map(formElement => (
+          <Input
+            key={formElement.id}
+            elementType={formElement.config.elementType}
+            elementConfig={formElement.config.elementConfig}
+            value={formElement.config.value}
+            changed={event => this.inputChangedHandler(event, formElement.id)}
+          />
+        ))}
         <Button btnType="Success" clicked={this.orderHandler}>
           ORDER
         </Button>
